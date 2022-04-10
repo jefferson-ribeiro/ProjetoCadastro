@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import modelos.ClienteModelo;
 import modelos.FuncionarioModelo;
+import modelos.PedidoModelo;
 import modelos.ProdutoModelo;
 
 public class Programa {
@@ -16,11 +17,9 @@ public class Programa {
 
 		// Criação de listas para cada um dos objetos do projeto
 		ArrayList<ClienteModelo> listaClientes = new ArrayList<ClienteModelo>();
-
 		ArrayList<ProdutoModelo> listaProdutos = new ArrayList<ProdutoModelo>();
-		
 		ArrayList<FuncionarioModelo> listaFuncionarios = new ArrayList<FuncionarioModelo>();
-
+		ArrayList<PedidoModelo> listaPedidos = new ArrayList<PedidoModelo>();
 
 		int opcao = 0;
 
@@ -70,7 +69,7 @@ public class Programa {
 			case 2: {
 				System.out.println("=====Cadastro de Produtos=====");
 
-				var p = new ProdutoModelo(0, null, null,0.0);
+				var p = new ProdutoModelo(0, null, null, 0.0);
 
 				p.setCodigoProduto(listaProdutos.size() + 1);
 
@@ -86,14 +85,15 @@ public class Programa {
 				listaProdutos.add(p);
 
 				System.out.println("Produto cadastrado com sucesso !!!");
+				break;
 			}
 			case 3: {
-				
+
 				System.out.println("=====Cadastro de Funcionários=====");
 
 				var f = new FuncionarioModelo(0, null, null, null);
 
-				f.setCodigoFuncionario(listaFuncionarios.size()+1);
+				f.setCodigoFuncionario(listaFuncionarios.size() + 1);
 
 				System.out.println("Digite o nome deste funcionário: ");
 				f.setNomeFuncionario(teclado.next());
@@ -110,7 +110,54 @@ public class Programa {
 				break;
 			}
 			case 4: {
-				System.out.println("Pedidos");
+				System.out.println("=====Cadastro de Pedidos=====");
+
+				var ped = new PedidoModelo(0, null, null, null, 0, 0.0);
+
+				ped.setCodigoPedido(listaPedidos.size() + 1);
+
+				System.out.println("Digite o código do Cliente para este pedido: ");
+
+				for (ClienteModelo cliente : listaClientes) {
+					System.out.println("(" + cliente.getCodigo() + ") " + cliente.getNome());
+				}
+				var codigoCliente = (teclado.nextInt() - 1);
+
+				ClienteModelo cliRef = listaClientes.get(codigoCliente);
+
+				ped.setCliente(cliRef);
+
+				System.out.println("Digite o código do Funcionário para este pedido: ");
+
+				for (FuncionarioModelo funcionario : listaFuncionarios) {
+					System.out.println(
+							"(" + funcionario.getCodigoFuncionario() + ") " + funcionario.getNomeFuncionario());
+				}
+				var codigoFuncionario = (teclado.nextInt() - 1);
+
+				FuncionarioModelo funRef = listaFuncionarios.get(codigoFuncionario);
+
+				ped.setFuncionario(funRef);
+
+				System.out.println("Digite o código do Produto para este pedido: ");
+
+				for (ProdutoModelo produto : listaProdutos) {
+					System.out.println("(" + produto.getCodigoProduto() + ") " + produto.getNomeProduto());
+				}
+				var codigoProduto = (teclado.nextInt() - 1);
+
+				ProdutoModelo prodRef = listaProdutos.get(codigoProduto);
+
+				ped.setProduto(prodRef);
+
+				System.out.println("Digite a quantidade de produto: ");
+				ped.setQuantidade(teclado.nextInt());
+
+				ped.setValorTotal(ped.getQuantidade() * ped.getProduto().getValorProduto());
+
+				listaPedidos.add(ped);
+
+				System.out.println("Pedido cadastrado com sucesso !!!");
 				break;
 			}
 
@@ -127,7 +174,7 @@ public class Programa {
 				}
 				break;
 			}
-			
+
 			case 6: {
 				System.out.println("=====Relatorio de Produtos=====");
 				for (ProdutoModelo p : listaProdutos) {
@@ -140,7 +187,7 @@ public class Programa {
 				}
 				break;
 			}
-			
+
 			case 7: {
 				System.out.println("=====Relatorio de Funcionários=====");
 				for (FuncionarioModelo f : listaFuncionarios) {
@@ -153,12 +200,21 @@ public class Programa {
 				}
 				break;
 			}
-			
+
 			case 8: {
 				System.out.println("=====Relatorio de Pedidos=====");
-
+				for (PedidoModelo pe : listaPedidos) {
 					System.out.println("--------------------------------------");
+					System.out.println("Codigo: " + pe.getCodigoPedido());
+					System.out.println("Cliente: " + pe.getCliente().getNome());
+					System.out.println("Funcionário: " + pe.getFuncionario().getNomeFuncionario());
+					System.out.println("///////////////////////////////////////");
+					System.out.println("Produto: " + pe.getProduto().getNomeProduto());
+					System.out.println("Quantidade: " + pe.getQuantidade());
+					System.out.println("Valor unitário: R$" + pe.getProduto().getValorProduto());
+					System.out.println("Valor Total: R$" + pe.getValorTotal());
 					System.out.println("--------------------------------------");
+				}
 				break;
 			}
 
