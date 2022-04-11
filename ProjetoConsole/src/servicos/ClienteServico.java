@@ -26,8 +26,9 @@ public class ClienteServico {
 		c.setEmail(teclado.next());
 
 		listaClientes.add(c);
-
+		System.out.println("--------------------------------------");
 		System.out.println("Cliente cadastrado com sucesso !!!");
+		System.out.println("--------------------------------------");
 	}
 
 	public static void RelatorioCliente(ArrayList<ClienteModelo> listaClientes) {

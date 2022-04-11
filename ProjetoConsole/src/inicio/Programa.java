@@ -77,6 +77,8 @@ public class Programa {
 						break;
 					}
 					default:
+						System.out.println("Opção inválida");
+						break;
 
 					}
 				} while (opcao2 != 0);

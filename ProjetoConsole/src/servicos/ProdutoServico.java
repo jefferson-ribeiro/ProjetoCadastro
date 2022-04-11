@@ -24,7 +24,9 @@ public class ProdutoServico {
 
 		listaProdutos.add(p);
 
+		System.out.println("--------------------------------------");
 		System.out.println("Produto cadastrado com sucesso !!!");
+		System.out.println("--------------------------------------");
 	}
 
 	public static void RelatorioProduto(ArrayList<ProdutoModelo> listaProdutos) {

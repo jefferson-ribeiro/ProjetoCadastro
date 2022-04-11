@@ -24,7 +24,9 @@ public class FuncionarioServico {
 
 		listaFuncionarios.add(f);
 
+		System.out.println("--------------------------------------");
 		System.out.println("Funcionário cadastrado com sucesso !!!");
+		System.out.println("--------------------------------------");
 	}
 
 	public static void RelatorioFuncionario(ArrayList<FuncionarioModelo> listaFuncionarios) {
