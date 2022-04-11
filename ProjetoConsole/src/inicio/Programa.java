@@ -27,16 +27,10 @@ public class Programa {
 		int opcao = 0;
 
 		do {
-			System.out.println("=====Cadastro e Geração de Pedidos=====");
+			System.out.println("=====Programa para Cadastro e Relatórios=====");
 			System.out.println(":::::::::::::::::::::::::::::::::::::::");
-			System.out.println("1 - Cadastrar Cliente");
-			System.out.println("2 - Cadastrar Produto");
-			System.out.println("3 - Cadastrar Funcionários");
-			System.out.println("4 - Cadastrar Pedidos");
-			System.out.println("5 - Relátorio de Clientes");
-			System.out.println("6 - Relátorio de Produtos");
-			System.out.println("7 - Relátorio de Funcionários");
-			System.out.println("8 - Relátorio de Pedidos");
+			System.out.println("1 - Cadastrar");
+			System.out.println("2 - Relátorio");
 			System.out.println("0 - Sair");
 			System.out.println(":::::::::::::::::::::::::::::::::::::::");
 			System.out.println("Digite a opção desejada: ");
@@ -45,47 +39,98 @@ public class Programa {
 
 			switch (opcao) {
 			case 1: {
-				System.out.println("=====Cadastro de Clientes=====");
-				ClienteServico.CadastroCliente(listaClientes);
+				int opcao2 = 0;
+				do {
+
+					System.out.println("=====Cadastros=====");
+					System.out.println(":::::::::::::::::::::::::::::::::::::::");
+					System.out.println("1 - Cadastrar Cliente");
+					System.out.println("2 - Cadastrar Produto");
+					System.out.println("3 - Cadastrar Funcionários");
+					System.out.println("4 - Cadastrar Pedidos");
+					System.out.println("0 - Voltar");
+					System.out.println(":::::::::::::::::::::::::::::::::::::::");
+					System.out.println("Digite a opção desejada: ");
+					opcao2 = teclado.nextInt();
+
+					switch (opcao2) {
+					case 1: {
+						System.out.println("=====Cadastro de Clientes=====");
+						ClienteServico.CadastroCliente(listaClientes);
+						break;
+
+					}
+					case 2: {
+						System.out.println("=====Cadastro de Produtos=====");
+						ProdutoServico.CadastroProduto(listaProdutos);
+						break;
+					}
+					case 3: {
+						System.out.println("=====Cadastro de Funcionários=====");
+						FuncionarioServico.CadastroFuncionario(listaFuncionarios);
+						break;
+
+					}
+					case 4: {
+						System.out.println("=====Cadastro de Pedidos=====");
+						PedidoServico.CadastroPedido(listaClientes, listaProdutos, listaFuncionarios, listaPedidos);
+						break;
+					}
+					default:
+
+					}
+				} while (opcao2 != 0);
 				break;
 			}
 			case 2: {
-				System.out.println("=====Cadastro de Produtos=====");
-				ProdutoServico.CadastroProduto(listaProdutos);
-				break;
-			}
-			case 3: {
-				System.out.println("=====Cadastro de Funcionários=====");
-				FuncionarioServico.CadastroFuncionario(listaFuncionarios);
-				break;
-			}
-			case 4: {
-				System.out.println("=====Cadastro de Pedidos=====");
-				PedidoServico.CadastroPedido(listaClientes, listaProdutos, listaFuncionarios, listaPedidos);
-				break;
-			}
+				int opcao3 = 0;
 
-			case 5: {
-				System.out.println("=====Relatorio de Clientes=====");
-				ClienteServico.RelatorioCliente(listaClientes);
-				break;
-			}
+				do {
+					System.out.println("=====Relatórios=====");
+					System.out.println(":::::::::::::::::::::::::::::::::::::::");
+					System.out.println("1 - Relátorio de Clientes");
+					System.out.println("2 - Relátorio de Produtos");
+					System.out.println("3 - Relátorio de Funcionários");
+					System.out.println("4 - Relátorio de Pedidos");
+					System.out.println("0 - Voltar");
+					System.out.println(":::::::::::::::::::::::::::::::::::::::");
+					System.out.println("Digite a opção desejada: ");
+					opcao3 = teclado.nextInt();
 
-			case 6: {
-				System.out.println("=====Relatorio de Produtos=====");
-				ProdutoServico.RelatorioProduto(listaProdutos);
-				break;
-			}
+					switch (opcao3) {
+					case 1: {
+						System.out.println("=====Relatorio de Clientes=====");
+						ClienteServico.RelatorioCliente(listaClientes);
+						break;
+					}
 
-			case 7: {
-				System.out.println("=====Relatorio de Funcionários=====");
-				FuncionarioServico.RelatorioFuncionario(listaFuncionarios);
-				break;
-			}
+					case 2: {
+						System.out.println("=====Relatorio de Produtos=====");
+						ProdutoServico.RelatorioProduto(listaProdutos);
+						break;
+					}
 
-			case 8: {
-				System.out.println("=====Relatorio de Pedidos=====");
-				PedidoServico.RelatorioPedido(listaPedidos);
+					case 3: {
+						System.out.println("=====Relatorio de Funcionários=====");
+						FuncionarioServico.RelatorioFuncionario(listaFuncionarios);
+						break;
+					}
+
+					case 4: {
+						System.out.println("=====Relatorio de Pedidos=====");
+						PedidoServico.RelatorioPedido(listaPedidos);
+						break;
+					}
+
+					case 0: {
+						System.out.println("Voltar");
+						break;
+					}
+					default:
+						System.out.println("Opção inválida");
+						break;
+					}
+				} while (opcao3 != 0);
 				break;
 			}
 

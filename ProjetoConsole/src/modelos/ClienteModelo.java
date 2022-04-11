@@ -8,7 +8,6 @@ public class ClienteModelo {
 	private String cpf;
 	private String email;
 
-
 	public ClienteModelo(int codigo, String nome, String telefone, String cpf, String email) {
 		super();
 		this.codigo = codigo;
