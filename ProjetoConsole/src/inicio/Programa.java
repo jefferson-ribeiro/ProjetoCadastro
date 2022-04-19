@@ -76,6 +76,12 @@ public class Programa {
 						PedidoServico.CadastroPedido(listaClientes, listaProdutos, listaFuncionarios, listaPedidos);
 						break;
 					}
+
+					case 0: {
+						System.out.println("Voltar");
+						break;
+					}
+
 					default:
 						System.out.println("Opção inválida");
 						break;

@@ -1,5 +1,7 @@
 package modelos;
 
+import java.util.ArrayList;
+
 public class PedidoModelo {
 
 	private int CodigoPedido;
@@ -9,15 +11,23 @@ public class PedidoModelo {
 	private int Quantidade;
 	private double ValorTotal;
 
-	public PedidoModelo(int codigo, ClienteModelo cliente, ProdutoModelo produto, FuncionarioModelo funcionario,
-			int quantidade, double valorTotal) {
+	private ArrayList<ProdutoModelo> listaProdutosCliente;
+	private ArrayList<Integer> listaQtdProdutos;
+	private ArrayList<Double> listaValorTotal;
+
+	public PedidoModelo(int codigoPedido, ClienteModelo cliente, ProdutoModelo produto, FuncionarioModelo funcionario,
+			int quantidade, double valorTotal, ArrayList<ProdutoModelo> listaProdutosCliente,
+			ArrayList<Integer> listaQtdProdutos, ArrayList<Double> listaValorTotal) {
 		super();
-		CodigoPedido = codigo;
+		CodigoPedido = codigoPedido;
 		Cliente = cliente;
 		Produto = produto;
 		Funcionario = funcionario;
 		Quantidade = quantidade;
 		ValorTotal = valorTotal;
+		this.listaProdutosCliente = listaProdutosCliente = new ArrayList<ProdutoModelo>();
+		this.listaQtdProdutos = listaQtdProdutos = new ArrayList<Integer>();
+		this.listaValorTotal = listaValorTotal = new ArrayList<Double>();
 	}
 
 	public int getCodigoPedido() {
@@ -66,6 +76,30 @@ public class PedidoModelo {
 
 	public void setValorTotal(double valorTotal) {
 		ValorTotal = valorTotal;
+	}
+
+	public ArrayList<ProdutoModelo> getListaProdutosCliente() {
+		return listaProdutosCliente;
+	}
+
+	public void setListaProdutosCliente(ArrayList<ProdutoModelo> listaProdutosCliente) {
+		this.listaProdutosCliente = new ArrayList<ProdutoModelo>();
+	}
+
+	public ArrayList<Integer> getListaQtdProdutos() {
+		return listaQtdProdutos;
+	}
+
+	public void setListaQtdProdutos(ArrayList<Integer> listaQtdProdutos) {
+		this.listaQtdProdutos = new ArrayList<Integer>();
+	}
+
+	public ArrayList<Double> getListaValorTotal() {
+		return listaValorTotal;
+	}
+
+	public void setListaValorTotal(ArrayList<Double> listaValorTotal) {
+		this.listaValorTotal = new ArrayList<Double>();
 	}
 
 }

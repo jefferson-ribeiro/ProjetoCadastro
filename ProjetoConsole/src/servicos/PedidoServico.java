@@ -25,14 +25,14 @@ public class PedidoServico {
 			System.out.println("--------------------------------------");
 			ProdutoServico.CadastroProduto(listaProdutos);
 		}
-		
+
 		if (listaFuncionarios.size() == 0) {
 			System.out.println("Não existe funcionário cadastrado");
 			System.out.println("--------------------------------------");
 			FuncionarioServico.CadastroFuncionario(listaFuncionarios);
 		}
 
-		var ped = new PedidoModelo(0, null, null, null, 0, 0.0);
+		var ped = new PedidoModelo(0, null, null, null, 0, 0, listaProdutos, null, null);
 
 		ped.setCodigoPedido(listaPedidos.size() + 1);
 
@@ -72,32 +72,44 @@ public class PedidoServico {
 
 			ProdutoModelo prodRef = listaProdutos.get(codigoProduto);
 
-			ped.setProduto(prodRef);
+			ped.getListaProdutosCliente().add(prodRef);
 
 			System.out.println("Digite a quantidade de produto: ");
-			ped.setQuantidade(teclado.nextInt());
 
-			ped.setValorTotal(ped.getQuantidade() * ped.getProduto().getValorProduto());
-			listaPedidos.add(ped);
+			ped.getListaQtdProdutos().add(teclado.nextInt());
+
+			ped.getListaValorTotal()
+					.add(ped.getListaQtdProdutos().get(i) * ped.getListaProdutosCliente().get(i).getValorProduto());
 		}
+
+		listaPedidos.add(ped);
+
 		System.out.println("--------------------------------------");
 		System.out.println("Pedido cadastrado com sucesso !!!");
 		System.out.println("--------------------------------------");
 	}
 
 	public static void RelatorioPedido(ArrayList<PedidoModelo> listaPedidos) {
+		double valorTotalPedido = 0;
 		for (PedidoModelo pe : listaPedidos) {
+
 			System.out.println("--------------------------------------");
 			System.out.println("Codigo: " + pe.getCodigoPedido());
 			System.out.println("Cliente: " + pe.getCliente().getNome());
 			System.out.println("Funcionário: " + pe.getFuncionario().getNomeFuncionario());
 			System.out.println("///////////////////////////////////////");
-			System.out.println("Produto: " + pe.getProduto().getNomeProduto());
-			System.out.println("Quantidade: " + pe.getQuantidade());
-			System.out.println("Valor unitário: R$" + pe.getProduto().getValorProduto());
-			System.out.println("Valor Total: R$" + pe.getValorTotal());
-			System.out.println("--------------------------------------");
+
+			for (int i = 0; i < pe.getListaProdutosCliente().size(); i++) {
+				System.out.println("Produto: " + pe.getListaProdutosCliente().get(i).getNomeProduto());
+				System.out.println("Quantidade: " + pe.getListaQtdProdutos().get(i));
+				System.out.println("Valor unitário: R$" + pe.getListaProdutosCliente().get(i).getValorProduto());
+				System.out.println("Valor Total: R$" + pe.getListaValorTotal().get(i));
+				System.out.println("--------------------------------------");
+				valorTotalPedido += pe.getListaValorTotal().get(i);
+			}
 		}
+		System.out.println("Valor Total do pedido: R$" + valorTotalPedido);
+		System.out.println("--------------------------------------");
 
 	}
 
