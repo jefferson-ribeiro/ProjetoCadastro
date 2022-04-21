@@ -14,16 +14,16 @@ public class ClienteServico {
 		c.setCodigo(listaClientes.size() + 1);
 
 		System.out.println("Digite o nome deste cliente: ");
-		c.setNome(teclado.next());
+		c.setNome(teclado.nextLine());
 
 		System.out.println("Digite o telefone deste cliente: ");
-		c.setTelefone(teclado.next());
+		c.setTelefone(teclado.nextLine());
 
 		System.out.println("Digite o CPF deste cliente: ");
-		c.setCpf(teclado.next());
+		c.setCpf(teclado.nextLine());
 
 		System.out.println("Digite o e-mail deste cliente: ");
-		c.setEmail(teclado.next());
+		c.setEmail(teclado.nextLine());
 
 		listaClientes.add(c);
 		System.out.println("--------------------------------------");

@@ -14,13 +14,13 @@ public class FuncionarioServico {
 		f.setCodigoFuncionario(listaFuncionarios.size() + 1);
 
 		System.out.println("Digite o nome deste funcionário: ");
-		f.setNomeFuncionario(teclado.next());
+		f.setNomeFuncionario(teclado.nextLine());
 
 		System.out.println("Digite a data de nascimento deste funcionário: ");
-		f.setNascFuncionario(teclado.next());
+		f.setNascFuncionario(teclado.nextLine());
 
 		System.out.println("Digite o endereço deste funcionário: ");
-		f.setEndFuncionario(teclado.next());
+		f.setEndFuncionario(teclado.nextLine());
 
 		listaFuncionarios.add(f);
 

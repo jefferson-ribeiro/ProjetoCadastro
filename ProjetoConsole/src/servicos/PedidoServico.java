@@ -32,7 +32,7 @@ public class PedidoServico {
 			FuncionarioServico.CadastroFuncionario(listaFuncionarios);
 		}
 
-		var ped = new PedidoModelo(0, null, null, null, 0, 0, listaProdutos, null, null);
+		var ped = new PedidoModelo(0, null, null, null, 0, 0, null, null, null);
 
 		ped.setCodigoPedido(listaPedidos.size() + 1);
 
@@ -107,10 +107,8 @@ public class PedidoServico {
 				System.out.println("--------------------------------------");
 				valorTotalPedido += pe.getListaValorTotal().get(i);
 			}
+			System.out.println("Valor Total do pedido: R$" + valorTotalPedido);
+			System.out.println("--------------------------------------");
 		}
-		System.out.println("Valor Total do pedido: R$" + valorTotalPedido);
-		System.out.println("--------------------------------------");
-
 	}
-
 }

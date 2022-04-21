@@ -9,18 +9,20 @@ public class ProdutoServico {
 	static Scanner teclado = new Scanner(System.in);
 
 	public static void CadastroProduto(ArrayList<ProdutoModelo> listaProdutos) {
-		var p = new ProdutoModelo(0, null, null, 0.0);
+		var p = new ProdutoModelo(0, null, null, 0);
 
 		p.setCodigoProduto(listaProdutos.size() + 1);
 
 		System.out.println("Digite o nome deste produto: ");
-		p.setNomeProduto(teclado.next());
+		p.setNomeProduto(teclado.nextLine());
 
 		System.out.println("Digite a descrição deste produto: ");
-		p.setDescricaoProduto(teclado.next());
+		p.setDescricaoProduto(teclado.nextLine());
 
 		System.out.println("Digite o valor deste produto: ");
-		p.setValorProduto(teclado.nextDouble());
+		var valorProdutoSrt = teclado.nextLine();
+		Double valorProduto = Double.valueOf(valorProdutoSrt);
+		p.setValorProduto(valorProduto);
 
 		listaProdutos.add(p);
 
@@ -35,7 +37,7 @@ public class ProdutoServico {
 			System.out.println("Codigo: " + p.getCodigoProduto());
 			System.out.println("Nome: " + p.getNomeProduto());
 			System.out.println("Descrição: " + p.getDescricaoProduto());
-			System.out.println("Valor: " + p.getValorProduto());
+			System.out.println("Valor: R$ " + p.getValorProduto());
 			System.out.println("--------------------------------------");
 		}
 	}
