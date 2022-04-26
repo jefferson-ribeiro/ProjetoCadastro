@@ -18,7 +18,7 @@ public class Pedido {
 	@Id // define o codigo como chave primária
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // define como auto increment
 	@Column(nullable = false, name = "id_pedido")
-	private long CodigoPedido;
+	private Long CodigoPedido;
 
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
@@ -33,16 +33,16 @@ public class Pedido {
 	private Produto Produto;
 
 	@Column(nullable = false, name = "quantidade_produto")
-	private long Quantidade;
+	private Long Quantidade;
 
 	@Column(nullable = false, name = "valorTotal_produto")
 	private BigDecimal ValorTotal;
 
-	public long getCodigoPedido() {
+	public Long getCodigoPedido() {
 		return CodigoPedido;
 	}
 
-	public void setCodigoPedido(long codigoPedido) {
+	public void setCodigoPedido(Long codigoPedido) {
 		CodigoPedido = codigoPedido;
 	}
 
@@ -70,11 +70,11 @@ public class Pedido {
 		Produto = produto;
 	}
 
-	public long getQuantidade() {
+	public Long getQuantidade() {
 		return Quantidade;
 	}
 
-	public void setQuantidade(long quantidade) {
+	public void setQuantidade(Long quantidade) {
 		Quantidade = quantidade;
 	}
 

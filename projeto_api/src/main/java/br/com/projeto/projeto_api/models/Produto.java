@@ -14,7 +14,7 @@ public class Produto {
 	@Id // define o codigo como chave primária
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // define como auto increment
 	@Column(nullable = false, name = "id_produto")
-	private long codigoProduto;
+	private Long codigoProduto;
 
 	@Column(nullable = false, name = "nome_produto")
 	private String nomeProduto;
@@ -25,11 +25,11 @@ public class Produto {
 	@Column(nullable = false, name = "valor_produto")
 	private BigDecimal valorProduto;
 
-	public long getCodigoProduto() {
+	public Long getCodigoProduto() {
 		return codigoProduto;
 	}
 
-	public void setCodigoProduto(long codigoProduto) {
+	public void setCodigoProduto(Long codigoProduto) {
 		this.codigoProduto = codigoProduto;
 	}
 

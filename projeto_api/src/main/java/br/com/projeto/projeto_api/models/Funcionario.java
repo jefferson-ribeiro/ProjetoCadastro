@@ -12,7 +12,7 @@ public class Funcionario {
 	@Id // define o codigo como chave primária
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // define como auto increment
 	@Column(nullable = false, name = "id_funcionario")
-	private long codigoFuncionario;
+	private Long codigoFuncionario;
 
 	@Column(nullable = false, name = "nome_funcionario")
 	private String nomeFuncionario;
@@ -23,11 +23,11 @@ public class Funcionario {
 	@Column(nullable = false, name = "endereco_funcionario")
 	private String endFuncionario;
 
-	public long getCodigoFuncionario() {
+	public Long getCodigoFuncionario() {
 		return codigoFuncionario;
 	}
 
-	public void setCodigoFuncionario(long codigoFuncionario) {
+	public void setCodigoFuncionario(Long codigoFuncionario) {
 		this.codigoFuncionario = codigoFuncionario;
 	}
 
