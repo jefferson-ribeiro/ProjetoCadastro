@@ -12,5 +12,4 @@ public class HomeController {
 		return "Projeto Cadastro";
 	}
 
-	// todo objeto que tem propriedades (serializable)
 }
