@@ -3,6 +3,7 @@ package br.com.projeto.projeto_api.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.projeto.projeto_api.dao.ClienteDao;
 import br.com.projeto.projeto_api.models.Cliente;
 
+@CrossOrigin
 @RestController // Sinaliza que trata-se de um controlador
 public class ClientesController {
 
@@ -30,8 +32,9 @@ public class ClientesController {
 		//http://localhost:8080/cliente?nomeCliente=Jaqueline&telefoneCliente=11974369468&cpfCliente=33152402805&emailCliente=jaque@gmail.com
 	}
 	
-	@PostMapping("/cliente")
+	@PostMapping("/cliente") //cadastro via Post parametros no body do navegador
 	public Cliente criacaoCliente(@RequestBody Cliente cliente) {
+		clienteDao.save(cliente);
 		return cliente;
 	}
 	
