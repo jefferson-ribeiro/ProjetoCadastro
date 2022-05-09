@@ -12,78 +12,78 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity // define que trata-se de uma entidade no banco de dados
-@Table(name = "pedido")
+@Table(name = "pedidos")
 public class Pedido {
 
 	@Id // define o codigo como chave primária
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // define como auto increment
 	@Column(nullable = false, name = "id_pedido")
-	private Long CodigoPedido;
+	private Long codigoPedido;
 
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
-	private Cliente Cliente;
+	private Cliente cliente;
 
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario")
-	private Funcionario Funcionario;
+	private Funcionario funcionario;
 
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
-	private Produto Produto;
+	private Produto produto;
 
 	@Column(nullable = false, name = "quantidade_produto")
-	private Long Quantidade;
+	private Long quantidade;
 
 	@Column(nullable = false, name = "valorTotal_produto")
-	private BigDecimal ValorTotal;
+	private BigDecimal valorTotal;
 
 	public Long getCodigoPedido() {
-		return CodigoPedido;
+		return codigoPedido;
 	}
 
 	public void setCodigoPedido(Long codigoPedido) {
-		CodigoPedido = codigoPedido;
+		this.codigoPedido = codigoPedido;
 	}
 
 	public Cliente getCliente() {
-		return Cliente;
+		return cliente;
 	}
 
 	public void setCliente(Cliente cliente) {
-		Cliente = cliente;
+		this.cliente = cliente;
 	}
 
 	public Funcionario getFuncionario() {
-		return Funcionario;
+		return funcionario;
 	}
 
 	public void setFuncionario(Funcionario funcionario) {
-		Funcionario = funcionario;
+		this.funcionario = funcionario;
 	}
 
 	public Produto getProduto() {
-		return Produto;
+		return produto;
 	}
 
 	public void setProduto(Produto produto) {
-		Produto = produto;
+		this.produto = produto;
 	}
 
 	public Long getQuantidade() {
-		return Quantidade;
+		return quantidade;
 	}
 
 	public void setQuantidade(Long quantidade) {
-		Quantidade = quantidade;
+		this.quantidade = quantidade;
 	}
 
 	public BigDecimal getValorTotal() {
-		return ValorTotal;
+		return valorTotal;
 	}
 
 	public void setValorTotal(BigDecimal valorTotal) {
-		ValorTotal = valorTotal;
+		this.valorTotal = valorTotal;
 	}
 
 }

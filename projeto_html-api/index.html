@@ -32,14 +32,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#sobre">Sobre</a></li>
-                <br>
                 <li class="nav-item"><a class="nav-link disabled" href="#">Cadastro</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#cad_clientes">Clientes</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#cad_funcionarios">Funcionários</a>
                 </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#cad_produtos">Produtos</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#cad_pedidos">Pedidos</a></li>
-                <br>
                 <li class="nav-item"><a class="nav-link disabled" href="#">Relatórios</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#rel_clientes">Clientes</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#rel_funcionarios">Funcionários</a>
@@ -131,14 +129,7 @@
                         <input type="text" class="form-control" id="funcionarioEndereço" aria-describedby="emailHelp"
                             placeholder="Endereço do funcionário">
                     </div>
-                    <!--<div class="form-group">
-                        <label for="exampleInputEmail1">Endereço de email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Email do cliente">
-                        <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com
-                            ninguém.</small>
-                    </div>
-                     -->
+                    <br>
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
 
@@ -165,14 +156,7 @@
                         <input type="text" class="form-control" id="produtoValor" aria-describedby="emailHelp"
                             placeholder="Valor unitário do produto">
                     </div>
-                    <!--<div class="form-group">
-                        <label for="exampleInputEmail1">Endereço de email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Email do cliente">
-                        <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com
-                            ninguém.</small>
-                    </div>
-                     -->
+                    <br>
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
 
@@ -183,13 +167,42 @@
         <section class="resume-section" id="cad_pedidos">
             <div class="resume-section-content">
                 <h2 class="mb-5">Pedidos</h2>
+                <form onsubmit="cadastraPedido()" method="post">
+                    <div class="form-group">
+                        <label for="pedidoCliente">Cliente:</label>
+                        <select id="pedidoCliente">
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="pedidoFuncionario">Funcionário:</label>
+                        <select id="pedidoFuncionario">
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="pedidoProduto">Produto:</label>
+                        <select id="pedidoProduto">
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="pedidoQtdProduto">Quantidade:</label>
+                        <input type="text" class="form-control" id="pedidoQtdProduto" aria-describedby="emailHelp"
+                            placeholder="Quantidade de produto">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
 
+            </div>
         </section>
         <hr class="m-0" />
         <!-- Relatorio Cliente-->
         <section class="resume-section" id="rel_clientes">
             <div class="resume-section-content">
                 <h2 class="mb-5">Relatório Clientes</h2>
+                <button onclick="BuscarClientes()" class="btn btn-primary">Listar</button>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -200,7 +213,7 @@
                             <th scope="col">Email</th>
                         </tr>
                     </thead>
-                    <tbody id="listaCliente">
+                    <tbody id="listaClientes">
                     </tbody>
                 </table>
             </div>
@@ -209,6 +222,7 @@
         <section class="resume-section" id="rel_funcionarios">
             <div class="resume-section-content">
                 <h2 class="mb-5">Relatório Funcionários</h2>
+                <button onclick="BuscarFuncionarios()" class="btn btn-primary">Listar</button>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -218,7 +232,7 @@
                             <th scope="col">Endereço</th>
                         </tr>
                     </thead>
-                    <tbody id="listaFuncionario">
+                    <tbody id="listaFuncionarios">
                     </tbody>
                 </table>
             </div>
@@ -227,6 +241,7 @@
         <section class="resume-section" id="rel_produtos">
             <div class="resume-section-content">
                 <h2 class="mb-5">Relatório Produtos</h2>
+                <button onclick="BuscarProdutos()" class="btn btn-primary">Listar</button>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -236,7 +251,7 @@
                             <th scope="col">Valor</th>
                         </tr>
                     </thead>
-                    <tbody id="listaProduto">
+                    <tbody id="listaProdutos">
                     </tbody>
                 </table>
             </div>
@@ -245,6 +260,7 @@
         <section class="resume-section" id="rel_pedidos">
             <div class="resume-section-content">
                 <h2 class="mb-5">Relatório Pedidos</h2>
+                <button onclick="BuscarPedidos()" class="btn btn-primary">Listar</button>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -256,7 +272,7 @@
                             <th scope="col">Valor Total</th>
                         </tr>
                     </thead>
-                    <tbody id="listaPedido">
+                    <tbody id="listaPedidos">
                     </tbody>
                 </table>
             </div>

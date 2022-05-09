@@ -33,10 +33,10 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
- // Implementações projeto cadastro
+// Implementações projeto cadastro
 
- //Captura os dados do body
- function fazPost(url, body) {
+//Captura os dados do body
+function fazPost(url, body) {
   console.log("Body=", body)
   let request = new XMLHttpRequest()
   request.open("POST", url, true)
@@ -50,8 +50,8 @@ window.addEventListener('DOMContentLoaded', event => {
   return request.responseText
 }
 
- //Cliente
- // Listar Clientes
+//Cliente
+// Listar Clientes
 async function BuscarClientes() {
   let url = 'http://localhost:8080/clientes'
   try {
@@ -71,15 +71,15 @@ async function BuscarClientes() {
                   </tr>
                 `
     }
-    document.getElementById('listaCliente').innerHTML = html
+    document.getElementById('listaClientes').innerHTML = html
   } catch (error) {
     console.log(error)
   }
 }
-BuscarClientes()
+
 
 //função para limpar os campos após o cadastro
-function limparCliente(){
+function limparCliente() {
   document.getElementById("clienteNome").value = " "
   document.getElementById("clienteTelefone").value = " "
   document.getElementById("clienteCpf").value = " "
@@ -111,9 +111,9 @@ function cadastraCliente() {
 //Funcionários
 
 //função para limpar os campos após o cadastro
-function limparFuncionario(){
-  document.getElementById("funcionarioNome").value  = " "
-  document.getElementById("funcionarioNascimento").value  = " "
+function limparFuncionario() {
+  document.getElementById("funcionarioNome").value = " "
+  document.getElementById("funcionarioNascimento").value = " "
   document.getElementById("funcionarioEndereço").value = " "
 }
 
@@ -124,12 +124,12 @@ function cadastraFuncionario() {
   let nome = document.getElementById("funcionarioNome").value
   let nascimento = document.getElementById("funcionarioNascimento").value
   let end = document.getElementById("funcionarioEndereço").value
-  
+
 
   body = {
     "nomeFuncionario": nome,
     "nascFuncionario": nascimento,
-    "endFuncionario": end, 
+    "endFuncionario": end,
   }
 
   fazPost(url, body)
@@ -155,17 +155,16 @@ async function BuscarFuncionarios() {
                   </tr>
                 `
     }
-    document.getElementById('listaFuncionario').innerHTML = html
+    document.getElementById('listaFuncionarios').innerHTML = html
   } catch (error) {
     console.log(error)
   }
 }
-BuscarFuncionarios()
 
 //Produto
 
 //função para limpar os campos após o cadastro
-function limparProduto(){
+function limparProduto() {
   document.getElementById("produtoNome").value = ""
   document.getElementById("produtoDescricao").value = ""
   document.getElementById("produtoValor").value = ""
@@ -178,12 +177,12 @@ function cadastraProduto() {
   let produto = document.getElementById("produtoNome").value
   let descricao = document.getElementById("produtoDescricao").value
   let valor = document.getElementById("produtoValor").value
-  
+
 
   body = {
     "nomeProduto": produto,
     "descricaoProduto": descricao,
-    "valorProduto": valor, 
+    "valorProduto": valor,
   }
 
   fazPost(url, body)
@@ -209,10 +208,135 @@ async function BuscarProdutos() {
                   </tr>
                 `
     }
-    document.getElementById('listaProduto').innerHTML = html
+    document.getElementById('listaProdutos').innerHTML = html
   } catch (error) {
     console.log(error)
   }
 }
-BuscarProdutos()
+
+//Pedido
+
+//função para limpar os campos após o cadastro
+function limparPedido() {
+  document.getElementById("pedidoCliente").value = ""
+  document.getElementById("pedidoFuncionario").value = ""
+  document.getElementById("pedidoProduto").value = ""
+  document.getElementById("pedidoQtdProduto").value = ""
+}
+
+//Cadastro Pedido
+function cadastraPedido() {
+  event.preventDefault()
+  let url = 'http://localhost:8080/pedido'
+  let pedidoCliente = document.getElementById("pedidoCliente").value
+  let pedidoFuncionario = document.getElementById("pedidoFuncionario").value
+  let pedidoProduto = document.getElementById("pedidoProduto").value
+  let pedidoQtdProduto = document.getElementById("pedidoQtdProduto").value
+  let valorTotalProduto = pedidoProduto * pedidoQtdProduto
+
+
+  body = {
+    "cliente": pedidoCliente,
+    "funcionario": pedidoFuncionario,
+    "produto": pedidoProduto,
+    "quantidade": pedidoQtdProduto,
+    "valorTotal": valorTotalProduto
+  }
+
+  fazPost(url, body)
+  limparPedido()
+}
+
+//Select de clientes para cadastrar pedido
+async function SelectClientes() {
+  let url = 'http://localhost:8080/clientes'
+  try {
+    let res = await fetch(url)
+    let clientes = await res.json()
+
+    let html = ''
+    for (var i = 0; i < clientes.length; i++) {
+      let cliente = clientes[i]
+      html += `
+                <option value=${cliente.nomeCliente}>${cliente.nomeCliente}</option>
+                `
+    }
+    document.getElementById('pedidoCliente').innerHTML = html
+  } catch (error) {
+    console.log(error)
+  }
+}
+SelectClientes()
+
+//Select de funcionários para cadastrar pedido
+async function SelectFuncionarios() {
+  let url = 'http://localhost:8080/funcionarios'
+  try {
+    let res = await fetch(url)
+    let funcionarios = await res.json()
+
+    let html = ''
+    for (var i = 0; i < funcionarios.length; i++) {
+      let funcionario = funcionarios[i]
+      html += `
+               <option value=${funcionario.nomeFuncionario}>${funcionario.nomeFuncionario}</option>
+                `
+    }
+    document.getElementById('pedidoFuncionario').innerHTML = html
+  } catch (error) {
+    console.log(error)
+  }
+}
+SelectFuncionarios()
+
+//Select de produtos para cadastrar pedido
+async function SelectProdutos() {
+  let url = 'http://localhost:8080/produtos'
+  try {
+    let res = await fetch(url)
+    let produtos = await res.json()
+
+    let html = ''
+    for (var i = 0; i < produtos.length; i++) {
+      let produto = produtos[i]
+      html += `
+            <option value=${produto.nomeProduto}>${produto.nomeProduto}</option>
+                `
+    }
+    document.getElementById('pedidoProduto').innerHTML = html
+  } catch (error) {
+    console.log(error)
+  }
+}
+SelectProdutos()
+
+
+
+
+//Listar Pedidos
+async function BuscarPedidos() {
+  let url = 'http://localhost:8080/pedidos'
+  try {
+    let res = await fetch(url)
+    let pedidos = await res.json()
+
+    let html = ''
+    for (var i = 0; i < pedidos.length; i++) {
+      let pedido = pedidos[i]
+      html += `
+                  <tr>
+                    <th scope="row">${pedido.codigoPedido}</th>
+                    <td>${pedido.cliente.nomeCliente}</td>
+                    <td>${pedido.funcionario.nomeFuncionario}</td>
+                    <td>${pedido.produto.nomeProduto}</td>
+                    <td>${pedido.pedidoQtdProduto}</td>
+                    <td>${pedido.valorTotalProduto}</td>
+                  </tr>
+                `
+    }
+    document.getElementById('listaProdutos').innerHTML = html
+  } catch (error) {
+    console.log(error)
+  }
+}
 

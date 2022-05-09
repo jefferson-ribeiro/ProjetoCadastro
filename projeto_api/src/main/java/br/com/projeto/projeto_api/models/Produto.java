@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity // define que trata-se de uma entidade no banco de dados
+@Table(name = "produtos")
 public class Produto {
 
 	@Id // define o codigo como chave primária
