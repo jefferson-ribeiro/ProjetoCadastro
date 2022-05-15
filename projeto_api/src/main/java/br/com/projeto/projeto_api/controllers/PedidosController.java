@@ -30,7 +30,7 @@ public class PedidosController {
 	}
 
 	@GetMapping("/pedidos")
-	public ArrayList<Pedido> listaDePedidos(Cliente cliente, Funcionario funcionario, Produto produto, long quantidade,
+	public ArrayList<Pedido> listaDePedidos(Cliente cliente, Funcionario funcionario, Produto produto, Long quantidade,
 			BigDecimal valorTotal) {
 		var listaPedidos = pedidoDao.findAll();
 		return (ArrayList<Pedido>) listaPedidos;

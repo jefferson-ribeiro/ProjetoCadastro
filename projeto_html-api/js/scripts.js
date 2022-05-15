@@ -35,20 +35,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
 // Implementações projeto cadastro
 
-//Captura os dados do body
-function fazPost(url, body) {
-  console.log("Body=", body)
-  let request = new XMLHttpRequest()
-  request.open("POST", url, true)
-  request.setRequestHeader("Content-type", "application/json")
-  request.send(JSON.stringify(body))
-
-  request.onload = function () {
-    console.log(this.responseText)
-  }
-
-  return request.responseText
-}
 
 //Cliente
 // Listar Clientes
@@ -77,7 +63,6 @@ async function BuscarClientes() {
   }
 }
 
-
 //função para limpar os campos após o cadastro
 function limparCliente() {
   document.getElementById("clienteNome").value = " "
@@ -86,7 +71,7 @@ function limparCliente() {
   document.getElementById("clienteEmail").value = " "
 }
 
-//Cadastro Cliente
+//Cadastro Cliente # NOVA
 function cadastraCliente() {
   event.preventDefault()
   let url = 'http://localhost:8080/cliente'
@@ -104,7 +89,19 @@ function cadastraCliente() {
     "emailCliente": email
   }
 
-  fazPost(url, body)
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+    })
   limparCliente()
 }
 
@@ -132,7 +129,19 @@ function cadastraFuncionario() {
     "endFuncionario": end,
   }
 
-  fazPost(url, body)
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+    })
   limparFuncionario()
 }
 
@@ -185,7 +194,19 @@ function cadastraProduto() {
     "valorProduto": valor,
   }
 
-  fazPost(url, body)
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+    })
   limparProduto()
 }
 
@@ -232,8 +253,7 @@ function cadastraPedido() {
   let pedidoFuncionario = document.getElementById("pedidoFuncionario").value
   let pedidoProduto = document.getElementById("pedidoProduto").value
   let pedidoQtdProduto = document.getElementById("pedidoQtdProduto").value
-  let valorTotalProduto = pedidoProduto * pedidoQtdProduto
-
+  let valorTotalProduto = pedidoProduto.valorProduto * pedidoQtdProduto
 
   body = {
     "cliente": pedidoCliente,
@@ -243,7 +263,19 @@ function cadastraPedido() {
     "valorTotal": valorTotalProduto
   }
 
-  fazPost(url, body)
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+    })
   limparPedido()
 }
 
@@ -334,7 +366,7 @@ async function BuscarPedidos() {
                   </tr>
                 `
     }
-    document.getElementById('listaProdutos').innerHTML = html
+    document.getElementById('listaPedidos').innerHTML = html
   } catch (error) {
     console.log(error)
   }
