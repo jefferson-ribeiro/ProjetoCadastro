@@ -14,7 +14,7 @@ public class Cliente {
 	@Id // define o codigo como chave primária
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // define como auto increment
 	@Column(nullable = false, name = "id_cliente")
-	private Long codigoCliente;
+	private int codigoCliente;
 
 	@Column(nullable = false, name = "nome_cliente", length = 100)
 	private String nomeCliente;
@@ -28,11 +28,11 @@ public class Cliente {
 	@Column(nullable = false, name = "email_cliente")
 	private String emailCliente;
 
-	public Long getCodigoCliente() {
+	public int getCodigoCliente() {
 		return codigoCliente;
 	}
 
-	public void setCodigoCliente(Long codigoCliente) {
+	public void setCodigoCliente(int codigoCliente) {
 		this.codigoCliente = codigoCliente;
 	}
 

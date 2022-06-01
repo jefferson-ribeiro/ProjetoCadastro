@@ -54,6 +54,8 @@ async function BuscarClientes() {
                     <td>${cliente.telefoneCliente}</td>
                     <td>${cliente.cpfCliente}</td>
                     <td>${cliente.emailCliente}</td>
+                    <td><button type="button" class="btn btn-warning">Editar</button>
+                    <button type="button" class="btn btn-danger">Excluir</button></td>
                   </tr>
                 `
     }
@@ -249,11 +251,12 @@ function limparPedido() {
 function cadastraPedido() {
   event.preventDefault()
   let url = 'http://localhost:8080/pedido'
-  let pedidoCliente = document.getElementById("pedidoCliente").value
-  let pedidoFuncionario = document.getElementById("pedidoFuncionario").value
-  let pedidoProduto = document.getElementById("pedidoProduto").value
+  let pedidoCliente = JSON.parse(document.getElementById("pedidoCliente").value)
+  let pedidoFuncionario = JSON.parse(document.getElementById("pedidoFuncionario").value)
+  let pedidoProduto = JSON.parse(document.getElementById("pedidoProduto").value)
   let pedidoQtdProduto = document.getElementById("pedidoQtdProduto").value
   let valorTotalProduto = pedidoProduto.valorProduto * pedidoQtdProduto
+
 
   body = {
     "cliente": pedidoCliente,
@@ -286,11 +289,11 @@ async function SelectClientes() {
     let res = await fetch(url)
     let clientes = await res.json()
 
-    let html = ''
+    let html = '<option disabled selected value>Selecione o Cliente</option>'
     for (var i = 0; i < clientes.length; i++) {
       let cliente = clientes[i]
       html += `
-                <option value=${cliente.nomeCliente}>${cliente.nomeCliente}</option>
+                <option value='${JSON.stringify(cliente)}'>${cliente.nomeCliente}</option>
                 `
     }
     document.getElementById('pedidoCliente').innerHTML = html
@@ -307,11 +310,11 @@ async function SelectFuncionarios() {
     let res = await fetch(url)
     let funcionarios = await res.json()
 
-    let html = ''
+    let html = '<option disabled selected value>Selecione o Funcionário</option>'
     for (var i = 0; i < funcionarios.length; i++) {
       let funcionario = funcionarios[i]
       html += `
-               <option value=${funcionario.nomeFuncionario}>${funcionario.nomeFuncionario}</option>
+               <option value='${JSON.stringify(funcionario)}'>${funcionario.nomeFuncionario}</option>
                 `
     }
     document.getElementById('pedidoFuncionario').innerHTML = html
@@ -328,11 +331,11 @@ async function SelectProdutos() {
     let res = await fetch(url)
     let produtos = await res.json()
 
-    let html = ''
+    let html = '<option disabled selected value>Selecione o Produto</option>'
     for (var i = 0; i < produtos.length; i++) {
       let produto = produtos[i]
       html += `
-            <option value=${produto.nomeProduto}>${produto.nomeProduto}</option>
+            <option value='${JSON.stringify(produto)}'>${produto.nomeProduto}</option>
                 `
     }
     document.getElementById('pedidoProduto').innerHTML = html
@@ -361,8 +364,9 @@ async function BuscarPedidos() {
                     <td>${pedido.cliente.nomeCliente}</td>
                     <td>${pedido.funcionario.nomeFuncionario}</td>
                     <td>${pedido.produto.nomeProduto}</td>
-                    <td>${pedido.pedidoQtdProduto}</td>
-                    <td>${pedido.valorTotalProduto}</td>
+                    <td>${pedido.produto.valorProduto}</td>
+                    <td>${pedido.quantidade}</td>
+                    <td>${pedido.valorTotal}</td>
                   </tr>
                 `
     }
